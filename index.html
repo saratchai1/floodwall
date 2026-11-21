@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c43">
+  <meta name="description" content="Floodwall Studio — ระบบสาธิตงานสำรวจ แนวตลิ่ง หน้าตัด ตรวจคัดกรองเสถียรภาพ และบัญชีปริมาณงาน">
+  <title>Floodwall Studio | Riverbank Engineering</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-symbol"><svg viewBox="0 0 38 38" fill="none" aria-hidden="true"><path d="M5 12L15 6L26 13L33 8V28L23 33L12 26L5 30V12Z" stroke="#a5dbe4" stroke-width="2"/><path d="M5 22L15 16L26 23L33 18M15 6V16M12 26V12M26 13V23" stroke="#56a9bf" stroke-width="2"/><path d="M5 30L15 24L26 30L33 26" stroke="#f0b96b" stroke-width="2"/></svg></div>
+        <div><span class="brand-title">FLOODWALL<span class="brand-title-accent"> STUDIO</span></span><span class="brand-subtitle">RIVERBANK DESIGN WORKSPACE <span class="thin-divider">/</span> v0.1</span></div>
+      </div>
+      <div class="header-center"><span class="live-dot"></span><span id="projectTitleHeader">โครงการตัวอย่าง • เขื่อนป้องกันตลิ่ง</span><span class="header-code" id="projectCodeHeader">FW-DEMO-001</span></div>
+      <div class="header-actions">
+        <span class="status-pill"><span class="live-dot amber"></span> PROTOTYPE</span>
+        <button type="button" class="header-btn" id="newProjectBtn" title="เริ่มโครงการสาธิตใหม่">+ โครงการใหม่</button>
+        <button type="button" class="header-btn primary-header" id="saveProjectBtn" title="บันทึกโปรเจกต์เป็น JSON">บันทึก JSON ↧</button>
+      </div>
+    </header>
+
+    <div class="subheader">
+      <div class="breadcrumb">ENGINEERING WORKSPACE <span>/</span> FLOOD PROTECTION <span>/</span> <strong id="breadcrumbProject">PROJECT 01</strong></div>
+      <div class="subheader-right"><span class="subheader-kpi" id="quickLength">— ม.</span><span class="subheader-kpi" id="quickStations">— สถานี</span><span id="surveyBadge" class="data-badge demo">DEMO DATA</span></div>
+    </div>
+
+    <nav class="steps-bar" aria-label="ขั้นตอนการออกแบบ">
+      <button type="button" data-step="0" class="step active"><span class="step-num">01</span><span><b>สำรวจ &amp; แนว</b><small>SURVEY &amp; ALIGNMENT</small></span><span class="step-chevron">›</span></button>
+      <button type="button" data-step="1" class="step"><span class="step-num">02</span><span><b>ข้อมูลดิน</b><small>GEOTECHNICAL</small></span><span class="step-chevron">›</span></button>
+      <button type="button" data-step="2" class="step"><span class="step-num">03</span><span><b>ออกแบบหน้าตัด</b><small>CROSS SECTION</small></span><span class="step-chevron">›</span></button>
+      <button type="button" data-step="3" class="step"><span class="step-num">04</span><span><b>ตรวจเสถียรภาพ</b><small>SCREENING CHECK</small></span><span class="step-chevron">›</span></button>
+      <button type="button" data-step="4" class="step"><span class="step-num">05</span><span><b>ส่งออก</b><small>DRAWINGS &amp; BOQ</small></span></button>
+    </nav>
+
+    <main class="workarea">
+      <aside class="sidebar">
+        <div class="sidebar-top"><div><div class="eyebrow">DESIGN CONTROLS</div><h1 id="sidebarHeading">สำรวจและแนวตลิ่ง</h1></div><span class="control-code" id="stepCounter">01 / 05</span></div>
+        <div class="sidebar-body" id="sidebarContent"></div>
+        <div class="sidebar-actions"><button type="button" id="prevStepBtn" class="btn btn-outline">← ย้อนกลับ</button><button type="button" id="nextStepBtn" class="btn btn-primary">ถัดไป →</button></div>
+      </aside>
+
+      <div class="workspace-main">
+        <section class="viewer-card panel">
+          <div class="panel-titlebar"><div class="panel-title"><span class="panel-icon teal">◈</span><div><h2>แบบจำลองแนวตลิ่ง</h2><p>INTERACTIVE TERRAIN / ALIGNMENT CONCEPT</p></div></div><div class="toolbar"><button type="button" id="toggleLines" class="tool-btn">เส้นสถานี</button><button type="button" id="resetView" class="tool-btn">↻ รีเซ็ตมุมมอง</button><button type="button" id="pngView" class="tool-btn">↧ PNG</button></div></div>
+          <div class="viewer-canvas-wrap"><canvas id="terrainCanvas" aria-label="แบบจำลองแนวเขื่อนแบบหมุนและซูมได้"></canvas><div class="viewer-overlay viewer-top-left"><span class="mini-tag">3D CONCEPT</span><span class="mini-tag muted">PLAN + TOPOGRAPHY</span></div><div class="viewer-overlay viewer-bottom-left"><span class="orbit-icon">◎</span> ลากเพื่อหมุน · Shift + ลากเพื่อเลื่อน · Scroll เพื่อซูม</div><div class="viewer-overlay viewer-bottom-right">ไม่ใช่แบบจำลองภูมิประเทศจากการสำรวจจริง</div></div>
+        </section>
+
+        <section class="section-card panel">
+          <div class="panel-titlebar section-titlebar"><div class="panel-title"><span class="panel-icon amber">▣</span><div><h2>รูปตัดเขื่อนป้องกันตลิ่ง</h2><p>PARAMETRIC SECTION / SELECTED CHAINAGE</p></div></div><div class="current-station">STA <strong id="currentStation">0+000</strong></div></div>
+          <div class="station-toolbar"><label for="stationRange">ตำแหน่งรูปตัด</label><input id="stationRange" type="range" min="0" max="1000" step="5" value="250" aria-label="สถานีของหน้าตัด"><div class="station-limits"><span>0+000</span><span id="endStation">1+322</span></div></div>
+          <div id="sectionSvg" class="section-svg" role="figure" aria-label="รูปตัดเขื่อนที่ปรับตามข้อมูลออกแบบ"></div>
+          <div class="section-bottom"><div id="sectionMetrics" class="metrics-strip"></div><button type="button" class="inline-link" id="downloadSection">ส่งออก SVG ↧</button></div>
+        </section>
+
+        <div class="bottom-grid">
+          <section class="panel insights-card"><div class="compact-heading"><span class="eyebrow">DESIGN STATUS</span><span class="tiny-dot"></span></div><h3>ความพร้อมของข้อมูลโครงการ</h3><div id="readinessContent"></div></section>
+          <section class="panel summary-card"><div class="compact-heading"><span class="eyebrow">QUANTITY SNAPSHOT</span><span class="tiny-dot"></span></div><h3>ประมาณการปริมาณงานเบื้องต้น</h3><div id="costSnapshot"></div></section>
+        </div>
+        <footer class="workspace-footer">ต้นแบบเพื่อทดสอบกระบวนการออกแบบเท่านั้น · การตรวจเสถียรภาพเป็น Preliminary Screening ไม่ใช่ผลรับรองทางวิศวกรรม · ต้องให้วิศวกรผู้รับผิดชอบตรวจสอบก่อนใช้งานจริง</footer>
+      </div>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="jsonLoader" accept=".json,application/json" hidden>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
